@@ -1,0 +1,18 @@
+# Config locale (contient des secrets) — copier config.example.php
+/config/config.php
+
+# Base SQLite locale (générée par scripts/install.php)
+/db/*.sqlite
+/db/*.sqlite-journal
+
+# Documents uploadés par les utilisateurs
+/uploads/*
+!/uploads/.gitkeep
+
+# Assets tiers à installer localement (environnement air-gapped)
+/shared/vendor/*
+!/shared/vendor/.gitkeep
+
+# Divers
+.DS_Store
+*.log

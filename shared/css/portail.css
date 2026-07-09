@@ -1,0 +1,16 @@
+/* shared/css/portail.css — surcouche légère de Tabler pour le portail */
+
+.plugin-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.plugin-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.1);
+}
+.plugin-card .card-img-top {
+    height: 140px;
+    object-fit: cover;
+}
+.badge-confidentiality-public  { background-color: var(--tblr-success); }
+.badge-confidentiality-service { background-color: var(--tblr-warning); }
+.badge-confidentiality-private { background-color: var(--tblr-danger); }

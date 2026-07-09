@@ -1,0 +1,43 @@
+{
+  "id": "groupes-ad",
+  "name": "Gestion des Groupes AD",
+  "description": "Organisationnel, Localisation, Missions, Accès, Confidentialité.",
+  "version": "0.1.0",
+  "min_core_version": "1.0.0",
+  "category": "administration",
+  "icon": "assets/icon.svg",
+  "logo": "assets/logo.png",
+  "illustration": "assets/illustration.jpg",
+  "repo_url": "",
+  "editor_url": "",
+  "doc_url": "",
+  "entry_point": "public/index.php",
+  "permissions": [
+    { "code": "groupes_ad.access", "label": "Accès à la gestion des groupes" },
+    { "code": "groupes_ad.manage_mapping", "label": "Gestion du mapping groupe AD → rôle" },
+    { "code": "groupes_ad.admin", "label": "Administration du plugin" }
+  ],
+  "default_role_permissions": {
+    "plugin.groupes_ad.reader": ["groupes_ad.access"],
+    "plugin.groupes_ad.admin":  ["groupes_ad.access", "groupes_ad.manage_mapping", "groupes_ad.admin"]
+  },
+  "menu_entries": [
+    { "label": "Groupes AD", "route": "public/index.php", "permission": "groupes_ad.access" }
+  ],
+  "dashboard_widgets": [],
+  "hooks": {
+    "onActivate": "includes/hooks.php::onActivate",
+    "onUserSync": "includes/hooks.php::onUserSync",
+    "onCron": "includes/hooks.php::onCron"
+  },
+  "entity_types": [
+    { "code": "plugin.groupes_ad.group", "label": "Groupe AD", "org_scope_resolver": "includes/hooks.php::resolveGroupOrgUnit" }
+  ],
+  "document_categories": [
+    { "code": "justificatif", "label": "Justificatif de demande d'accès", "default_confidentiality": "private" }
+  ],
+  "db": { "mode": "sqlite_shared", "migrations_dir": "migrations" },
+  "assets": { "css": [], "js": [] },
+  "status": "inactive",
+  "_note": "Ce plugin pilote le moteur RBAC du noyau (ad_group_role_mapping) : il n'implémente pas son propre système de permissions."
+}

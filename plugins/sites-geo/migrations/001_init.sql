@@ -1,0 +1,8 @@
+-- Ce plugin est déclaré en mode "mysql_own" (manifest.json) : ce fichier
+-- documente le schéma à créer côté MySQL/MariaDB dédié, pas dans portail.sqlite.
+-- CREATE TABLE sites_geo_extended (
+--     site_id INT PRIMARY KEY,
+--     floor_plan_svg LONGTEXT,
+--     building_extrusion_json LONGTEXT,
+--     osm_bounds VARCHAR(255)
+-- );

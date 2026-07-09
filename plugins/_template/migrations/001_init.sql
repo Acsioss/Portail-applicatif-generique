@@ -1,0 +1,6 @@
+-- Migration initiale du plugin. Préfixer toutes les tables par plg_{code}_.
+-- Exemple :
+-- CREATE TABLE IF NOT EXISTS plg_plugin_template_items (
+--     id INTEGER PRIMARY KEY,
+--     label TEXT NOT NULL
+-- );

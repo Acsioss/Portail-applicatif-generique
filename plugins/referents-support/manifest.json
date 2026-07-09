@@ -1,0 +1,44 @@
+{
+  "id": "referents-support",
+  "name": "Gestion des Référents Support",
+  "description": "DGS, Prévention, RH, Informatique, Bâtiments — contacts et procédures par domaine.",
+  "version": "0.1.0",
+  "min_core_version": "1.0.0",
+  "category": "support",
+  "icon": "assets/icon.svg",
+  "logo": "assets/logo.png",
+  "illustration": "assets/illustration.jpg",
+  "repo_url": "",
+  "editor_url": "",
+  "doc_url": "",
+  "entry_point": "public/index.php",
+  "permissions": [
+    { "code": "referents_support.access", "label": "Accès à la matrice de contacts" },
+    { "code": "referents_support.editor", "label": "Édition des fiches contacts" },
+    { "code": "referents_support.admin", "label": "Administration du plugin" }
+  ],
+  "default_role_permissions": {
+    "plugin.referents_support.reader": ["referents_support.access"],
+    "plugin.referents_support.editor": ["referents_support.access", "referents_support.editor"],
+    "plugin.referents_support.admin":  ["referents_support.access", "referents_support.editor", "referents_support.admin"]
+  },
+  "menu_entries": [
+    { "label": "Référents Support", "route": "public/index.php", "permission": "referents_support.access" }
+  ],
+  "dashboard_widgets": [],
+  "hooks": {
+    "onActivate": "includes/hooks.php::onActivate",
+    "onUserSync": "includes/hooks.php::onUserSync",
+    "onCron": "includes/hooks.php::onCron"
+  },
+  "entity_types": [
+    { "code": "plugin.referents_support.contact", "label": "Contact référent support", "org_scope_resolver": "includes/hooks.php::resolveContactOrgUnit" }
+  ],
+  "document_categories": [
+    { "code": "procedure", "label": "Procédure interne", "default_confidentiality": "service" }
+  ],
+  "db": { "mode": "sqlite_shared", "migrations_dir": "migrations" },
+  "assets": { "css": [], "js": [] },
+  "status": "inactive",
+  "_note": "Réutilise core/glpi_connector.php pour les liens Formcreator et core/mailer.php pour les notifications consolidées."
+}

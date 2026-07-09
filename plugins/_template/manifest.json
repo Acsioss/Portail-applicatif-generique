@@ -1,0 +1,43 @@
+{
+  "id": "plugin-template",
+  "name": "Nom du plugin",
+  "description": "Description courte affichée sur la carte d'accueil.",
+  "version": "0.1.0",
+  "min_core_version": "1.0.0",
+  "category": "generique",
+  "icon": "assets/icon.svg",
+  "logo": "assets/logo.png",
+  "illustration": "assets/illustration.jpg",
+  "repo_url": "",
+  "editor_url": "",
+  "doc_url": "",
+  "entry_point": "public/index.php",
+  "permissions": [
+    { "code": "plugin_template.access", "label": "Accès au plugin" },
+    { "code": "plugin_template.admin",  "label": "Administration du plugin" }
+  ],
+  "default_role_permissions": {
+    "plugin.plugin_template.reader": ["plugin_template.access"],
+    "plugin.plugin_template.admin":  ["plugin_template.access", "plugin_template.admin"]
+  },
+  "menu_entries": [
+    { "label": "Nom du plugin", "route": "public/index.php", "permission": "plugin_template.access" }
+  ],
+  "dashboard_widgets": [],
+  "hooks": {
+    "onActivate": "includes/hooks.php::onActivate",
+    "onUserSync": "includes/hooks.php::onUserSync",
+    "onCron": "includes/hooks.php::onCron"
+  },
+  "entity_types": [],
+  "document_categories": [],
+  "db": {
+    "mode": "sqlite_shared",
+    "migrations_dir": "migrations"
+  },
+  "assets": {
+    "css": [],
+    "js": []
+  },
+  "status": "inactive"
+}

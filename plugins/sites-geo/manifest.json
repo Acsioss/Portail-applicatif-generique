@@ -1,0 +1,44 @@
+{
+  "id": "sites-geo",
+  "name": "Gestion des Sites géographiques",
+  "description": "Plans géo-référencés des sites de l'organisation (2D et 3D).",
+  "version": "0.1.0",
+  "min_core_version": "1.0.0",
+  "category": "cartographie",
+  "icon": "assets/icon.svg",
+  "logo": "assets/logo.png",
+  "illustration": "assets/illustration.jpg",
+  "repo_url": "",
+  "editor_url": "",
+  "doc_url": "",
+  "entry_point": "public/index.php",
+  "permissions": [
+    { "code": "sites_geo.access", "label": "Accès aux plans de sites" },
+    { "code": "sites_geo.edit_plan", "label": "Édition des plans" },
+    { "code": "sites_geo.admin", "label": "Administration du plugin" }
+  ],
+  "default_role_permissions": {
+    "plugin.sites_geo.reader": ["sites_geo.access"],
+    "plugin.sites_geo.editor": ["sites_geo.access", "sites_geo.edit_plan"],
+    "plugin.sites_geo.admin":  ["sites_geo.access", "sites_geo.edit_plan", "sites_geo.admin"]
+  },
+  "menu_entries": [
+    { "label": "Sites géographiques", "route": "public/index.php", "permission": "sites_geo.access" }
+  ],
+  "dashboard_widgets": [],
+  "hooks": {
+    "onActivate": "includes/hooks.php::onActivate",
+    "onUserSync": "includes/hooks.php::onUserSync",
+    "onCron": "includes/hooks.php::onCron"
+  },
+  "entity_types": [
+    { "code": "plugin.sites_geo.building", "label": "Bâtiment", "org_scope_resolver": "includes/hooks.php::resolveBuildingOrgUnit" }
+  ],
+  "document_categories": [
+    { "code": "plan", "label": "Plan 2D", "default_confidentiality": "service" },
+    { "code": "extrusion_3d", "label": "Rendu 3D", "default_confidentiality": "service" }
+  ],
+  "db": { "mode": "mysql_own", "migrations_dir": "migrations" },
+  "assets": { "css": ["assets/sites-geo.css"], "js": ["assets/map.js"] },
+  "status": "inactive"
+}

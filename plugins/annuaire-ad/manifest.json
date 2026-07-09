@@ -1,0 +1,42 @@
+{
+  "id": "annuaire-ad",
+  "name": "Annuaire utilisateur AD",
+  "description": "Organisation, Directions, Services, Responsables, Sites, Référents, Membres.",
+  "version": "0.1.0",
+  "min_core_version": "1.0.0",
+  "category": "annuaire",
+  "icon": "assets/icon.svg",
+  "logo": "assets/logo.png",
+  "illustration": "assets/illustration.jpg",
+  "repo_url": "",
+  "editor_url": "",
+  "doc_url": "",
+  "entry_point": "public/index.php",
+  "permissions": [
+    { "code": "annuaire_ad.access", "label": "Accès à l'annuaire" },
+    { "code": "annuaire_ad.export", "label": "Export CSV annuaire" },
+    { "code": "annuaire_ad.admin",  "label": "Administration des référents" }
+  ],
+  "default_role_permissions": {
+    "plugin.annuaire_ad.reader": ["annuaire_ad.access"],
+    "plugin.annuaire_ad.admin":  ["annuaire_ad.access", "annuaire_ad.export", "annuaire_ad.admin"]
+  },
+  "menu_entries": [
+    { "label": "Annuaire", "route": "public/index.php", "permission": "annuaire_ad.access" }
+  ],
+  "dashboard_widgets": ["includes/widget_effectifs.php"],
+  "hooks": {
+    "onActivate": "includes/hooks.php::onActivate",
+    "onUserSync": "includes/hooks.php::onUserSync",
+    "onCron": "includes/hooks.php::onCron"
+  },
+  "entity_types": [
+    { "code": "plugin.annuaire_ad.referent", "label": "Référent de service", "org_scope_resolver": "includes/hooks.php::resolveReferentOrgUnit" }
+  ],
+  "document_categories": [
+    { "code": "photo", "label": "Photo de profil", "default_confidentiality": "public" }
+  ],
+  "db": { "mode": "sqlite_shared", "migrations_dir": "migrations" },
+  "assets": { "css": ["assets/annuaire.css"], "js": [] },
+  "status": "inactive"
+}
